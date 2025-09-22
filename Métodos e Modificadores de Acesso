@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        Pessoa p = new Pessoa();
+
+        System.out.println("digite a sua idade");
+        p.setIdade(sc.nextInt());
+        System.out.println("Idade:"+ p.getidade());
+
+    }
+}
+
+#Main
+
+
+public class Pessoa {
+    private double peso;
+    private double idade;
+
+    public void setPeso(double peso){
+        this.peso = peso;
+
+    }
+    public void setIdade(double idade){
+        this.idade = idade;
+
+    }
+    public double getPeso() {
+        return peso;
+    }
+    public double getIdade(){
+        return idade;
+    }
+}
+#Pessoa
