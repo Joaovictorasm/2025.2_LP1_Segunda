@@ -1,0 +1,26 @@
+01.
+public class Funcionario {
+    private String matricula;
+    private String nome;
+    private double salario_bruto;
+
+    public double calculadoraSalarioLiquido() { return salario_bruto * 0.85; }
+
+    public double calcularInss() {
+        return salario_bruto * 0.15;
+    }
+    public String exbirconracheque(){
+        return "Matricula" + matricula +
+                "Nome" + nome +
+                "SalarioBruto" + salario_bruto;
+
+    }
+    public String getMatricula(){
+        return matricula;
+
+    }
+    public void setMatricula(String Matricula){
+        this.matricula = matricula;
+    }
+
+}
