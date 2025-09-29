@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        Aluno a1 = new Aluno();
+
+        System.out.println("Nome do Aluno:");
+        a1.setNome(sc.nextLine());
+
+        System.out.println("Idade do Aluno");
+        a1.setIdade(sc.nextInt());
+
+        System.out.println("matricula do Aluno");
+        a1.setMatricula(sc.nextLine());
+
+         sc.close();
+    }
+}
