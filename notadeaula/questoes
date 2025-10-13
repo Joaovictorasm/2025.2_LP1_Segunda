@@ -1,0 +1,233 @@
+public class Funcionario {
+    private String matricula;
+    private String nome;
+    private double salarioBruto;
+
+    public Funcionario(String matricula, String nome, double salarioBruto) {
+        this.matricula = matricula;
+        this.nome = nome;
+        this.salarioBruto = salarioBruto;
+    }
+
+    public double calcularInss() {
+        return this.salarioBruto * 0.15;
+    }
+
+    public double calcularSalarioLiquido() {
+        return this.salarioBruto - calcularInss();
+    }
+
+    public void exibirContracheque() {
+        System.out.println("\n--- CONTRATO DE PAGAMENTO ---");
+        System.out.println("Matrícula: " + this.matricula);
+        System.out.println("Nome: " + this.nome);
+        System.out.printf("Salário Bruto: R$ %.2f\n", this.salarioBruto);
+        System.out.printf("Desconto INSS (15%%): R$ %.2f\n", calcularInss());
+        System.out.println("-----------------------------");
+        System.out.printf("Salário Líquido: R$ %.2f\n", calcularSalarioLiquido());
+        System.out.println("-----------------------------\n");
+    }
+}
+
+
+Questao 2
+
+
+public class ContaBancaria {
+    private String numeroConta;
+    private String titular;
+    private double saldo;
+
+    public ContaBancaria(String numeroConta, String titular) {
+        this.numeroConta = numeroConta;
+        this.titular = titular;
+        this.saldo = 0.0;
+    }
+
+    public void consultarSaldo() {
+        System.out.printf("Saldo atual: R$ %.2f\n", this.saldo);
+    }
+
+    public void depositar(double valor) {
+        if (valor > 0) {
+            this.saldo += valor;
+            System.out.printf("Depósito de R$ %.2f realizado.\n", valor);
+        } else {
+            System.out.println("Erro: O valor deve ser positivo.");
+        }
+    }
+
+    public boolean sacar(double valor) {
+        if (valor > 0 && valor <= this.saldo) {
+            this.saldo -= valor;
+            System.out.printf("Saque de R$ %.2f realizado.\n", valor);
+            return true;
+        } else if (valor > this.saldo) {
+            System.out.println("Erro: Saldo insuficiente.");
+            return false;
+        } else {
+            System.out.println("Erro: O valor do saque deve ser positivo.");
+            return false;
+        }
+    }
+
+    public boolean transferir(ContaBancaria destino, double valor) {
+        if (this.sacar(valor)) {
+            destino.depositar(valor);
+            System.out.printf("Transferência de R$ %.2f para %s concluída.\n", valor, destino.getTitular());
+            return true;
+        }
+        return false;
+    }
+    
+    public String getTitular() {
+        return titular;
+    }
+}
+
+Questao 3
+
+
+public class Filme {
+    private String nome;
+    private String genero;
+    private int ano;
+    private int duracao;
+    private double somaNotas;
+    private int qtdAvaliacoes;
+
+    public Filme(String nome, String genero, int ano, int duracao) {
+        this.nome = nome;
+        this.genero = genero;
+        this.ano = ano;
+        this.duracao = duracao;
+        this.somaNotas = 0;
+        this.qtdAvaliacoes = 0;
+    }
+
+    public void exibirDetalhes() {
+        System.out.println("\n--- DETALHES ---");
+        System.out.println("Nome: " + this.nome);
+        System.out.println("Gênero: " + this.genero);
+        System.out.println("Ano: " + this.ano);
+        System.out.println("Duração: " + this.duracao + " min");
+        calcularMediaAvaliacoes();
+    }
+
+    public void avaliar(int nota) {
+        if (nota >= 0 && nota <= 10) {
+            this.somaNotas += nota;
+            this.qtdAvaliacoes++;
+            System.out.println("Avaliação registrada!");
+        } else {
+            System.out.println("Erro: Nota deve ser entre 0 e 10.");
+        }
+    }
+
+    public void calcularMediaAvaliacoes() {
+        if (this.qtdAvaliacoes > 0) {
+            double media = this.somaNotas / this.qtdAvaliacoes;
+            System.out.printf("Média de Avaliações: %.2f (%d avaliações)\n", media, this.qtdAvaliacoes);
+        } else {
+            System.out.println("Média: N/A (Não avaliado)");
+        }
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+}
+
+Questao 4 Heranca
+  
+public class Medico {
+    private String nome;
+    private String crm;
+
+    public Medico(String nome, String crm) {
+        this.nome = nome;
+        this.crm = crm;
+    }
+    
+    public void atenderPaciente() {
+        System.out.println("Dr(a). " + nome + " está realizando um atendimento.");
+    }
+    
+    public String getNome() { return nome; }
+}
+
+
+public class ClinicoGeral extends Medico {
+    public ClinicoGeral(String nome, String crm) {
+        super(nome, crm);
+    }
+    
+    public void realizarExameFisico() {
+        System.out.println("O Clínico Geral " + getNome() + " realiza exame físico completo.");
+    }
+}
+
+
+public class Cirurgiao extends Medico {
+    public Cirurgiao(String nome, String crm) {
+        super(nome, crm);
+    }
+    
+    public void operar() {
+        System.out.println("O Cirurgião " + getNome() + " está em procedimento cirúrgico.");
+    }
+}
+
+Questao 4 relacionamento
+
+// Classe Cliente
+public class Cliente {
+    private String nome;
+    private String cpf;
+
+    public Cliente(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+    public String getNome() { return nome; }
+}
+
+// Classe Vendedor
+public class Vendedor {
+    private String nome;
+    private String matricula;
+
+    public Vendedor(String nome, String matricula) {
+        this.nome = nome;
+        this.matricula = matricula;
+    }
+    public String getNome() { return nome; }
+}
+
+// Classe Pedido (relaciona Cliente e Vendedor)
+public class Pedido {
+    private int numero;
+    private String data;
+    private double valorTotal;
+    
+    // Relacionamentos
+    private Cliente cliente;
+    private Vendedor vendedor;
+
+    public Pedido(int numero, Cliente cliente, Vendedor vendedor, double valorTotal, String data) {
+        this.numero = numero;
+        this.cliente = cliente;
+        this.vendedor = vendedor;
+        this.valorTotal = valorTotal;
+        this.data = data;
+    }
+
+    public void exibirPedido() {
+        System.out.println("\n--- DETALHES DO PEDIDO N° " + numero + " ---");
+        System.out.println("Data: " + data);
+        System.out.println("Cliente: " + cliente.getNome());
+        System.out.println("Vendedor: " + vendedor.getNome());
+        System.out.printf("Valor Total: R$ %.2f\n", valorTotal);
+    }
+}
+
