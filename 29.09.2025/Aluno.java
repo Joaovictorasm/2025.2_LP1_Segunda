@@ -3,12 +3,12 @@ public class Aluno extends Pessoa {
         super(nome,idade);
     }
 
-        private String matricula;
-        private double n1,n2,n3,media;
+    private String matricula;
+    private double n1,n2,n3,media;
 
-        public void calcularMedia() {
-            media = n1 + n2 + n3 / 3;
-        }
+    public void calcularMedia() {
+        media = n1 + n2 + n3 / 3;
+    }
 
 
     public String getMatricula() {
@@ -51,4 +51,3 @@ public class Aluno extends Pessoa {
         this.media = media;
     }
 }
-
