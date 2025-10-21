@@ -37,6 +37,28 @@ public class Main {
                 "nota3 "+ a1.getN3()+
                 "media "+ a1.getMedia());
 
-         sc.close();
+
+        Professor p = new Professor("nome", 22,6000);
+
+        System.out.println("Nome do Professor:");
+        p.setNome(sc.nextLine());
+
+        System.out.println("Idade do Professor");
+        p.setIdade(sc.nextInt());
+        sc.nextLine();
+
+        System.out.println("matricula do Professor");
+        p.setSalario(sc.nextDouble());
+
+        System.out.println("Nome"+ a1.getNome() +
+                "Idade: "+ p.getIdade() +
+                "Salario: "+ p.getSalario()+
+                "Nome: "+ p.getNome());
+
+       p.setCargo(Cargo.Professor);
+        System.out.println(p.getCargo());
+
+        sc.close();
     }
 }
+
