@@ -1,18 +1,19 @@
-public class Pessoa {
+public abstract class Pessoa {
+    protected String nome;
+    protected int idade ;
+
     public Pessoa(String nome, int idade){
         this.nome = nome;
         this.idade = idade;
     }
 
-    protected String nome;
-    protected int idade;
-
     public void aniversario() {
         idade++;
         System.out.println("Nova idade"+ idade);
     }
-
-
+    public String toString(){
+        return "Nome" + this.nome + "idade" + this.idade;
+    }
 
     public int getIdade() {
         return idade;
@@ -29,5 +30,6 @@ public class Pessoa {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    public abstract void quemSouEu();
+    public abstract void minhaAtividade();
 }
-
